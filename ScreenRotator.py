@@ -93,16 +93,16 @@ def build_menu():
     menu.append(seperator)
         
     ### battery tray contains the brightness control
-    #~ #brightness
-    #~ item_brightness_up = Gtk.MenuItem('Brightness +')
-    #~ item_brightness_up.connect('activate', increase_brightness)
-    #~ menu.append(item_brightness_up)
-    #~ item_brightness_down = Gtk.MenuItem("Brightness -")
-    #~ item_brightness_down.connect('activate', decrease_brightness)
-    #~ menu.append(item_brightness_down)
-    #~ #seperator
-    #~ seperator = Gtk.SeparatorMenuItem()
-    #~ menu.append(seperator)
+    #brightness
+    item_brightness_up = Gtk.MenuItem('Brightness +')
+    item_brightness_up.connect('activate', increase_brightness)
+    menu.append(item_brightness_up)
+    item_brightness_down = Gtk.MenuItem("Brightness -")
+    item_brightness_down.connect('activate', decrease_brightness)
+    menu.append(item_brightness_down)
+    #seperator
+    seperator = Gtk.SeparatorMenuItem()
+    menu.append(seperator)
     
     
     # onboard keyboard
@@ -225,10 +225,10 @@ def screenshot(source):
 ### sudo apt install xbacklight
 
 def increase_brightness(source):
-    call(["xbacklight", "-inc", "20"])
+    call(["brightnessctl", "s", "10%+"])
 
 def decrease_brightness(source):
-    call(["xbacklight", "-dec", "20"])
+    call(["brightnessctl", "--min-value=30 s", "10%-"])
 
 if __name__ == "__main__":
     #make sure the screen is in normal orientation when the script starts
